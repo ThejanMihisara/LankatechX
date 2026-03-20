@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import LoadingAnimation from "./LoadingAnimation";
 
 export default function ProductCard({ product }) {
   const images = product.imageUrls || [];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFirstImageLoading, setIsFirstImageLoading] = useState(true);
 
   // Auto image slide
   useEffect(() => {
@@ -26,12 +28,25 @@ export default function ProductCard({ product }) {
       className="bg-white rounded-2xl shadow-md hover:shadow-2xl overflow-hidden"
     >
       {/* Image Slider */}
-      <div className="relative w-full h-52 bg-gray-100 overflow-hidden">
+      <div className="relative w-full h-52 bg-gray-100 overflow-hidden flex items-center justify-center">
+        
+        {/* ✅ Show loader ONLY for first image */}
+        {currentIndex === 0 && isFirstImageLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+            <LoadingAnimation />
+          </div>
+        )}
+
         <AnimatePresence mode="wait">
           <motion.img
             key={currentIndex}
             src={images[currentIndex]}
             alt={product.name}
+            onLoad={() => {
+              if (currentIndex === 0) {
+                setIsFirstImageLoading(false);
+              }
+            }}
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
@@ -40,7 +55,7 @@ export default function ProductCard({ product }) {
           />
         </AnimatePresence>
 
-        {/* Image indicators */}
+        {/* Indicators */}
         {images.length > 1 && (
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
             {images.map((_, index) => (
@@ -67,7 +82,6 @@ export default function ProductCard({ product }) {
           {product.description}
         </p>
 
-        {/* Price */}
         <div className="mt-4 flex items-center justify-between">
           <div>
             {product.labelledPrice > product.price && (
@@ -80,15 +94,12 @@ export default function ProductCard({ product }) {
             </p>
           </div>
 
-          <motion.button>
-           <Link
+          <Link
             to={`/productoverview/${product.productId}`}
-            whileTap={{ scale: 0.95 }}
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm"
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm active:scale-95 transition"
           >
             View
-             </Link>
-          </motion.button>
+          </Link>
         </div>
       </div>
     </motion.div>

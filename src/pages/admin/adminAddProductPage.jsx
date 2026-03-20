@@ -34,6 +34,13 @@ export default function AdminAddProductPage(){
             toast.error("Product ID is required.");
             return;
         }
+        
+// if(files.length > 5){
+//     toast.error("You can upload a maximum of 5 images.");
+//     return;
+// }
+
+        
         if(name===""){
             toast.error("Product name is required.");
             return;

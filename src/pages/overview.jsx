@@ -1,16 +1,35 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import LoadingAnimation from "../components/LoadingAnimation";
+import ImageSlideShow from "../components/imageSlideShow";
 
 export default function Overview() {
     const params=useParams();
+    const [product, setProduct] = useState(null);
     
 
     //fetch product details using params.productId and display them here
+useEffect(() => {
+    axios.get(import.meta.env.VITE_API_URL + "/products/" + params.productId).then(
+        (response) => {
+            setProduct(response.data);
+        });
+},[]);
+
+
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-            <h1 className="text-4xl font-bold mb-6">Welcome to iComputers</h1>
-            <p className="text-lg text-gray-700 mb-8 text-center max-w-xl">
-                Your one-stop shop for the latest and greatest in computer technology. Explore our wide range of products, from powerful gaming rigs to sleek ultrabooks, all designed to meet your computing needs. Whether you're a gamer, a professional, or just looking for a reliable computer, we've got you covered. Browse our collection and find the perfect device for you!
-            </p>
+        <div className=" h-[calc(100vh-100px)] w-full flex flex-col items-center justify-center bg-gray-100">
+          {
+            product==null?<LoadingAnimation  />:<div className=" w-full h-full flex">
+                <div className="w-[50%] h-full border ">
+                    <ImageSlideShow images={product.imageUrls}/>
+                    </div>
+                    <div className="w-[50%] h-full border">
+                    </div>
+            </div>
+          }
         </div>
     );
 }

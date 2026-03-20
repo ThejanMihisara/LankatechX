@@ -42,7 +42,9 @@ export default function ProdctPage() {
       {products.map((item) => (
         <ProductCard key={item._id} product={item} />
       ))}
+      
     </motion.div>
+    
   )}
 </div>
 );
