@@ -192,7 +192,7 @@ export default function AdminAddProductPage(){
             </select>
 
             </div>
-            <div className="w-full h-[80px] bg-white sticky bottom-0 rounded-b-2xl flex justify-end items-center p-4 gap-4">
+            <div className="w-full h-20 bg-white sticky bottom-0 rounded-b-2xl flex justify-end items-center p-4 gap-4">
                  <button onClick={() => window.history.back()} className="bg-red-600 text-white font-bold rounded-[10px] h-[50px] w-[150px] ml-4 hover:bg-red-700">Cancel</button>
                 <button onClick={handleAddProduct} className="bg-accent text-white font-bold rounded-[10px] h-[50px] w-[150px] hover:bg-accentHover">Add Product</button>
                
