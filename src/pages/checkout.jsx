@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
-import { addToCart, getcart, getcartTotal } from "../utils/cart";
-import { Link } from "react-router-dom";
+import { getcartTotal } from "../utils/cart";
+import { useLocation } from "react-router-dom";
 
-export default function Cart() {
-    const [cart, setCart] = useState([]);
+export default function Checkout() {
+    const location = useLocation();
+    const [cart, setCart] = useState(location.state || []);
 
-    useEffect(() => {
-        setCart(getcart());
-    }, []);
+   if(location.state == null){
+    Navigate("/products");
+   }
 
     function refreshCart() {
         setCart(getcart());
@@ -70,7 +71,17 @@ export default function Cart() {
 
                                     <div className="w-[210px] h-[50px] border border-accent rounded-full flex overflow-hidden">
                                         <button
-                                            onClick={() => decreaseQty(cartItem.product)}
+                                             onClick={() => {
+            setCart((prevCart) =>
+                prevCart
+                    .map((item, i) =>
+                        i === index
+                            ? { ...item, quantity: item.quantity - 1 }
+                            : item
+                    )
+                    .filter((item) => item.quantity > 0)
+            );
+        }}
                                             className="w-[70px] h-full flex justify-center items-center text-2xl font-bold text-gray-700 hover:bg-accent transition"
                                         >
                                             <BiMinus />
@@ -81,7 +92,15 @@ export default function Cart() {
                                         </span>
 
                                         <button
-                                            onClick={() => increaseQty(cartItem.product)}
+                                            onClick={() => {
+            setCart((prevCart) =>
+                prevCart.map((item, i) =>
+                    i === index
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                )
+            );
+        }}
                                             className="w-[70px] h-full flex justify-center items-center text-2xl font-bold text-gray-700 hover:bg-accent transition"
                                         >
                                             <BiPlus />
@@ -104,9 +123,9 @@ export default function Cart() {
                                 Rs. {getcartTotal(cart).toLocaleString()}
                             </p>
                         </div>
-                        <Link state={cart} to="/checkout" className="w-full max-w-[800px] bg-green-600 text-white text-lg font-bold py-3 rounded-lg hover:bg-green-700 transition flex items-center justify-center">
-                            Proceed to Checkout
-                        </Link>
+                        <button className="w-full max-w-[800px] bg-green-600 text-white text-lg font-bold py-3 rounded-lg hover:bg-green-700 transition">
+                            buy now
+                        </button>
                     </>
                 )}
             </div>

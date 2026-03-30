@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import LoadingAnimation from "../components/LoadingAnimation";
 import ImageSlideShow from "../components/imageSlideShow";
 import getFormattedPrice from "../utils/price-format";
 import { addToCart, getcart } from "../utils/cart";
+import { label } from "framer-motion/client";
 
 export default function Overview() {
     const params=useParams();
@@ -76,12 +77,24 @@ useEffect(() => {
                                 toast.success(product.name + " Product added to cart");
                             }
                             }>Add to Cart</button>
-                           <button className="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 transition cursor-pointer" onClick={
-                            ()=>{
-                                console.log(getcart());
-                            }
-                           }
-                           >Buy Now</button>
+                           <Link className="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 transition cursor-pointer"
+                           state={
+                            [
+                                {
+                                    product:{
+                                        name: product.name,
+                                        price: product.price,
+                                        labelledPrice: product.labelledPrice,
+                                        imageUrl: product.imageUrls[0],
+                                        productId: product.productId
+                                    },
+                                    quantity: 1
+                                    
+
+                                }
+                            ]
+                           }   to="/checkout">Buy Now
+                           </Link>
                         </div>
                     </div>
             </div>

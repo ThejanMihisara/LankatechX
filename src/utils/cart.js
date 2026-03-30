@@ -46,3 +46,9 @@ export function addToCart(product, quantity) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 }
+
+export function getcartTotal(cart){
+    return cart.reduce((total, item) => {
+        return total + item.product.price * item.quantity;
+    }, 0);
+}
