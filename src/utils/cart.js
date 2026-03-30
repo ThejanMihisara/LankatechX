@@ -48,7 +48,14 @@ export function addToCart(product, quantity) {
 }
 
 export function getcartTotal(cart){
-    return cart.reduce((total, item) => {
-        return total + item.product.price * item.quantity;
-    }, 0);
+    
+    let total = 0 
+
+    cart.forEach(
+        (cartItem)=>{
+                //total = total + cartItem.product.price * cartItem.qty
+                total += cartItem.product.price * cartItem.quantity
+        }
+    )    
+    return total
 }
