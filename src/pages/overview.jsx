@@ -64,7 +64,7 @@ useEffect(() => {
                         {/*labelled price if available*/}
                         {
                             product.labelledPrice && 
-                            <p className="text-md text-gray-500 mb-4">{getFormattedPrice(product.labelledPrice)}</p>
+                            <p className="text-md text-gray-500 mb-4  line-through">{getFormattedPrice(product.labelledPrice)}</p>
                         }
 
                           {/* product description*/}

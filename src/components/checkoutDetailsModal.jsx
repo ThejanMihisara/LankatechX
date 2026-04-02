@@ -75,7 +75,7 @@ export default function CheckOutDetailsModal(props) {
 							onClick={() => {
 								setIsVisible(false);
 							}}
-							className="w-[40px] h-[40px]  text-red-600 absolute right-0 text-sm font-bold hover:bg-red-600 hover:text-white cursor-pointer"
+							className="w-10 h-10  text-red-600 absolute right-0 text-sm font-bold hover:bg-red-600 hover:text-white cursor-pointer"
 						>
 							X
 						</button>
