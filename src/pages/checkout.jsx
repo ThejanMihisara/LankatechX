@@ -1,3 +1,4 @@
+// src/pages/checkout.jsx
 import { useEffect, useState } from "react";
 import { getcartTotal } from "../utils/cart";
 import { BiMinus, BiPlus } from "react-icons/bi";
@@ -78,8 +79,7 @@ export default function Checkout() {
                                                         ? {
                                                               ...item,
                                                               quantity:
-                                                                  item.quantity +
-                                                                  1,
+                                                                  item.quantity + 1,
                                                           }
                                                         : item
                                                 )
@@ -101,9 +101,11 @@ export default function Checkout() {
                                         )}
                                     </span>
                                 )}
+
                                 <span className="text-sm text-secondary font-semibold">
                                     {getFormattedPrice(cartItem.product.price)}
                                 </span>
+
                                 <span className="text-lg text-secondary font-bold">
                                     {getFormattedPrice(
                                         cartItem.product.price *
@@ -116,7 +118,11 @@ export default function Checkout() {
                 })}
 
                 <div className="bg-white w-[600px] h-[100px] sticky bottom-0 rounded-xl shadow flex items-center">
-                    <CheckOutDetailsModal cart={cart} />
+                    <CheckOutDetailsModal
+                        cart={cart}
+                        onOrderSuccess={() => setCart([])}
+                    />
+
                     <span className="text-xl font-bold text-secondary absolute right-5 border-b-4 border-double">
                         {getFormattedPrice(getcartTotal(cart))}
                     </span>

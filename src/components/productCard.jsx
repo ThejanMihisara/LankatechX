@@ -95,7 +95,7 @@ export default function ProductCard({ product }) {
           </div>
 
           <Link
-            to={`/productoverview/${product.productId}`}
+            to={`/overview/${product.productId}`}
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm active:scale-95 transition"
           >
             View

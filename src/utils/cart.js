@@ -1,3 +1,4 @@
+// src/utils/cart.js
 import toast from "react-hot-toast";
 
 export function getcart() {
@@ -9,6 +10,14 @@ export function getcart() {
     }
 
     return JSON.parse(cartString);
+}
+
+export function setcart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+export function clearCart() {
+    setcart([]);
 }
 
 export function addToCart(product, quantity) {
@@ -47,15 +56,12 @@ export function addToCart(product, quantity) {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-export function getcartTotal(cart){
-    
-    let total = 0 
+export function getcartTotal(cart) {
+    let total = 0;
 
-    cart.forEach(
-        (cartItem)=>{
-                //total = total + cartItem.product.price * cartItem.qty
-                total += cartItem.product.price * cartItem.quantity
-        }
-    )    
-    return total
+    cart.forEach((cartItem) => {
+        total += cartItem.product.price * cartItem.quantity;
+    });
+
+    return total;
 }

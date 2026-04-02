@@ -8,24 +8,6 @@ export default function LoginPage() {
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate()
 
-	// function login(){
-		
-	// 	axios.post("http://localhost:3000/users/login",
-	// 		{
-	// 			email : email,
-	// 			password : password
-	// 		}
-	// 	).then(
-	// 		(response)=>{
-	// 			console.log(response)
-	// 		}
-	// 	).catch(
-	// 		(error)=>{
-	// 			console.log(error)
-	// 			console.log("Login Failed")
-	// 		}
-	// 	)
-	// }
 
 	async function login(){
 		try{
@@ -40,15 +22,13 @@ export default function LoginPage() {
 
 			localStorage.setItem("token" , response.data.token)
 			
-			
-			if(response.data.role == "admin"){
-				
+			if(response.data.role == "admin"){				
 				navigate("/admin/")
 			}else{
-				//redirect to home page "/"
+				navigate("/")
 			}
-		}catch(error){
-			toast.error(error?.response?.data?.message || "Login Failed")
+		}catch(err){
+			toast.error(err?.response?.data?.message || "Failed to login");
 		}
 	}
 
@@ -95,7 +75,7 @@ export default function LoginPage() {
 					<p className="w-full  text-right pr-5">
 						Don't have an account?{" "}
 						<Link to="/register" className="text-accent">
-							Register
+							Sign up
 						</Link>
 					</p>
 				</div>
