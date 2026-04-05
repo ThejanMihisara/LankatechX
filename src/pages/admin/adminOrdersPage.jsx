@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import LoadingAnimation from "../../components/loadingAnimation";
+
 import getFormattedPrice from "../../utils/price-format";
 import getFormattedDate from "../../utils/date-format";
 import toast from "react-hot-toast";
 import ViewOrderInfoModal from "../../components/viewOrderInfoModal";
+import LoadingAnimation from "../../components/LoadingAnimation";
 
 export default function AdminOrdersPage() {
 	const [orders, setOrders] = useState([]);
