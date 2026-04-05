@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import LoadingAnimation from "./LoadingAnimation";
 
+
 export default function ProductCard({ product }) {
   const images = product.imageUrls || [];
   const [currentIndex, setCurrentIndex] = useState(0);

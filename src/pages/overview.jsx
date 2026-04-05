@@ -2,11 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
-import LoadingAnimation from "../components/LoadingAnimation";
+
 import ImageSlideShow from "../components/imageSlideShow";
 import getFormattedPrice from "../utils/price-format";
 import { addToCart, getcart } from "../utils/cart";
-import { label } from "framer-motion/client";
+import LoadingAnimation from "../components/LoadingAnimation";
+
 
 export default function Overview() {
     const params=useParams();

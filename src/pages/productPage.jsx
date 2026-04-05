@@ -2,8 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ProductCard from "../components/productCard";
-import LoadingAnimation from "../components/LoadingAnimation";
+
 import { motion } from "framer-motion";
+import LoadingAnimation from "../components/LoadingAnimation";
 
 export default function ProdctPage() {
     const [products, setProducts] = useState([]);

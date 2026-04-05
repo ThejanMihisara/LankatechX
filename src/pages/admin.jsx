@@ -9,8 +9,9 @@ import AdminProductsPage from "./admin/adminProductsPage";
 import AdminAddProductPage from "./admin/adminAddProductPage";
 import AdminUpdateProductPage from "./admin/adminUpdateProductPage";
 import AdminOrdersPage from "./admin/adminOrdersPage";
-import AdminUsersPage from "./admin/adminUsersPage";
+
 import { AdminContactMessagesPage } from "./admin/AdminContactMessagesPage";
+import AdminUsersPage from "./admin/adminUserspage";
 
 export default function AdminPage() {
 	const location = useLocation();

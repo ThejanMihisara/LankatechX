@@ -2,9 +2,10 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import ProductCard from "../components/productCard";
-import LoadingAnimation from "../components/LoadingAnimation";
+
 import { motion } from "framer-motion";
 import { useLocation, useParams } from "react-router-dom";
+import LoadingAnimation from "../components/LoadingAnimation";
 
 export default function CategoryProductsPage() {
 	const { slug } = useParams();
