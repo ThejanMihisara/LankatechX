@@ -18,6 +18,7 @@ export function setcart(cart) {
 
 export function clearCart() {
     setcart([]);
+    window.dispatchEvent(new Event("cartUpdated"));
 }
 
 export function addToCart(product, quantity) {

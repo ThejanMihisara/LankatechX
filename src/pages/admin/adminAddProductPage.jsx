@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import uploadfile from "../../utils/mediaUpload.js";
-import { a } from "framer-motion/client";
+
 /*
 
     
@@ -22,8 +22,8 @@ export default function AdminAddProductPage(){
     const [altNames , setAltNames] = useState("");
     const [price , setPrice] = useState("");
     const [labelledPrice , setLabelledPrice] = useState("");
-    const [category , setCategory] = useState("Others");
-    const [brand , setBrand] = useState("Standard");
+    const [category , setCategory] = useState("");
+    const [brand , setBrand] = useState("");
     const [model , setModel] = useState("");
     const [isVisible , setIsVisible] = useState(true);
     const navigate = useNavigate();
@@ -53,15 +53,12 @@ export default function AdminAddProductPage(){
             toast.error("Product price is required.");
             return;
         }
-        if(labelledPrice===""){
-            toast.error("Product labelled price is required.");
-            return;
-        }
+       
         if(altNames===""){
             toast.error("Alternative names are required.");
             return;
         }
-        if(imageUrls===""){
+        if(files.length === 0){
             toast.error("At least one product image is required.");
             return;
         }
@@ -122,81 +119,194 @@ export default function AdminAddProductPage(){
     }
     
     return(
-        <div className="w-full max-h-full flex flex-wrap items-start overflow-y-scroll hide-scroll-track">
-            <h1 className="w-full text-3xl font-bold mb-4 sticky top-0 bg-primary">Add New Product</h1>
-            <div className="w-[50%]  h-[120px] flex flex-col">
-                <label className="font-bold ml-2">Product ID</label>
-                <input value={productId} onChange={(e)=>{setProductId(e.target.value)}}  placeholder="Ex: ID001" className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
+        <div className="w-full max-h-screen flex flex-wrap items-start overflow-y-scroll bg-[#020b1f] rounded-[24px] border border-cyan-500/20 shadow-[0_0_35px_rgba(0,180,255,0.08)] pb-16">
+            <div className="w-full sticky top-0 z-20 px-6 py-5 bg-[#052c3a] border-b border-cyan-400/20">
+                <p className="text-[11px] uppercase tracking-[0.28em] text-cyan-300/70 mb-1">
+                    Admin Control
+                </p>
+                <h1 className="text-2xl font-bold text-white">Add New Product</h1>
+                <p className="text-sm text-slate-300/80 mt-1">
+                    Create a new product entry for your inventory
+                </p>
             </div>
-            <div className="w-[50%]  h-[120px] flex flex-col">
-                <label className="font-bold ml-2">Product Name</label>
-                <input value={name} onChange={(e)=>{setName(e.target.value)}}  placeholder="Ex: Laptop" className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
-            </div>
-            <div className="w-full h-[170px] flex flex-col">
-                <label className="font-bold ml-2">Description</label>
-                <textarea value={description} onChange={(e)=>{setDescription(e.target.value)}}  placeholder="Ex: Laptop" className="border-4 border-accent rounded-[10px] h-[100px] p-2 m-2 focus:outline-white"/>
-            </div>
-             <div className="w-full h-[120px] flex flex-col">
-                <label className="font-bold ml-2">Product Images</label>
-                <input type="file" multiple onChange={(e)=>{setFiles(e.target.files)}} className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
-             </div>
 
-            <div className="w-full h-[120px] flex flex-col">
-                <label className="font-bold ml-2">Alternative Names (Comma Separated)</label>
-                <input value={altNames} onChange={(e)=>{setAltNames(e.target.value)}}  placeholder="Ex: Laptop, Notebook, Portable Computer" className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
-            </div>
-            <div className="w-[50%]  h-[120px] flex flex-col">
-                <label className="font-bold ml-2">Price</label>
-                <input value={price} onChange={(e)=>{setPrice(e.target.value)}} type="number" placeholder="Ex: 50000" className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
-            </div>
-            <div className="w-[50%]  h-[120px] flex flex-col">
-                <label className="font-bold ml-2">Labelled Price</label>
-                <input value={labelledPrice} onChange={(e)=>{setLabelledPrice(e.target.value)}} type="number" placeholder="Ex: 60000" className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
-            </div>
-            <div className="w-[25%]  h-[120px] flex flex-col">
-                <label className="font-bold ml-2">Categories</label>
-                <select value={category} onChange={(e)=>{setCategory(e.target.value)}} className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white">
-                    <option value="Others">Others</option>
-                    <option value="Laptops">Laptops</option>
-                    <option value="Desktops">Desktops</option>
-                    <option value="Components">Components</option>
-                    <option value="Accessories">Accessories</option>
-                    <option value="Peripherals">Peripherals</option>
-                </select>
-            </div>
-            <div className="w-[25%]  h-[120px] flex flex-col">
-                <label className="font-bold ml-2">Brand</label>
-                <select value={brand} onChange={(e)=>{setBrand(e.target.value)}} className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white">
-                    <option value="Generic">Generic</option>
-                    <option value="Dell">Dell</option>
-                    <option value="HP">HP</option>
-                    <option value="Lenovo">Lenovo</option>
-                    <option value="Asus">Asus</option>
-                    <option value="Acer">Acer</option>
-                    <option value="Apple">Apple</option>
-                </select>
-            </div>
-            <div className="w-[25%]  h-[120px] flex flex-col">
-                <label className="font-bold ml-2">Model</label>
-                <input value={model} onChange={(e)=>{setModel(e.target.value)}} placeholder="Ex: Inspiron 15" className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
-            </div>
-            <div className="w-[25%]  h-[120px] flex flex-col">
-                <label className="font-bold ml-2">Is Visible</label>
-            <select
-                  value={isVisible}
-               onChange={(e) => setIsVisible(e.target.value === "true")}
-               className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"
-            >
-                   <option value="true">Yes</option>
-                   <option value="false">No</option>
-            </select>
-
-            </div>
-            <div className="w-full h-20 bg-white sticky bottom-0 rounded-b-2xl flex justify-end items-center p-4 gap-4">
-                 <button onClick={() => window.history.back()} className="bg-red-600 text-white font-bold rounded-[10px] h-[50px] w-[150px] ml-4 hover:bg-red-700">Cancel</button>
-                <button onClick={handleAddProduct} className="bg-accent text-white font-bold rounded-[10px] h-[50px] w-[150px] hover:bg-accentHover">Add Product</button>
-               
+            <div className="w-full p-5 flex flex-wrap">
+                <div className="w-[50%] h-[120px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Product ID</label>
+                    <input
+                        value={productId}
+                        onChange={(e)=>{setProductId(e.target.value)}}
+                        placeholder="Ex: ID001"
+                        className="h-[52px] px-4 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] placeholder:text-slate-500 shadow-sm outline-none focus:ring-2 focus:ring-cyan-500/30"
+                    />
                 </div>
+
+                <div className="w-[50%] h-[120px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Product Name</label>
+                    <input
+                        value={name}
+                        onChange={(e)=>{setName(e.target.value)}}
+                        placeholder="Ex: Laptop"
+                        className="h-[52px] px-4 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] placeholder:text-slate-500 shadow-sm outline-none focus:ring-2 focus:ring-cyan-500/30"
+                    />
+                </div>
+
+                <div className="w-full h-[170px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Description</label>
+                    <textarea
+                        value={description}
+                        onChange={(e)=>{setDescription(e.target.value)}}
+                        placeholder="Ex: Laptop"
+                        className="h-[110px] p-4 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] placeholder:text-slate-500 shadow-sm outline-none focus:ring-2 focus:ring-cyan-500/30 resize-none"
+                    />
+                </div>
+
+                <div className="w-full h-[120px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Product Images</label>
+                    <input
+                        type="file"
+                        multiple
+                        onChange={(e)=>{setFiles(e.target.files)}}
+                        className="h-[52px] p-2 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] shadow-sm outline-none file:mr-4 file:rounded-full file:border-0 file:bg-gradient-to-r file:from-cyan-500 file:to-sky-500 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white"
+                    />
+                </div>
+
+                <div className="w-full h-[120px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Alternative Names (Comma Separated)</label>
+                    <input
+                        value={altNames}
+                        onChange={(e)=>{setAltNames(e.target.value)}}
+                        placeholder="Ex: Laptop, Notebook, Portable Computer"
+                        className="h-[52px] px-4 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] placeholder:text-slate-500 shadow-sm outline-none focus:ring-2 focus:ring-cyan-500/30"
+                    />
+                </div>
+
+                <div className="w-[50%] h-[120px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Price</label>
+                    <input
+                        value={price}
+                        onChange={(e)=>{setPrice(e.target.value)}}
+                        type="number"
+                        placeholder="Ex: 50000"
+                        className="h-[52px] px-4 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] placeholder:text-slate-500 shadow-sm outline-none focus:ring-2 focus:ring-cyan-500/30"
+                    />
+                </div>
+
+                <div className="w-[50%] h-[120px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Labelled Price</label>
+                    <input
+                        value={labelledPrice}
+                        onChange={(e)=>{setLabelledPrice(e.target.value)}}
+                        type="number"
+                        placeholder="Ex: 60000"
+                        className="h-[52px] px-4 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] placeholder:text-slate-500 shadow-sm outline-none focus:ring-2 focus:ring-cyan-500/30"
+                    />
+                </div>
+
+                <div className="w-[25%] h-[120px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Categories</label>
+                    <select
+                        value={category}
+                        onChange={(e)=>{setCategory(e.target.value)}}
+                        className="h-[52px] px-4 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] shadow-sm outline-none focus:ring-2 focus:ring-cyan-500/30"
+                    >
+                        <option value="" disabled>Select Category</option>
+
+                        <option value="Laptops">Laptops</option>
+                        <option value="Desktops">Desktops</option>
+                        <option value="Older Products">Older Products</option>
+
+                        <option value="Apple">Apple</option>
+                        <option value="HP">HP</option>
+                        <option value="Dell">Dell</option>
+                        <option value="Asus">Asus</option>
+                        <option value="MSI">MSI</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Acer">Acer</option>
+
+                        <option value="Bag & Cases">Bag & Cases</option>
+                        <option value="Battery">Battery</option>
+                        <option value="Keyboard & Mouse">Keyboard & Mouse</option>
+
+                        <option value="VGA Cards">VGA Cards</option>
+                        <option value="Motherboards">Motherboards</option>
+                        <option value="Power Supply">Power Supply</option>
+                        <option value="Processors">Processors</option>
+                        <option value="RAM">RAM</option>
+                        <option value="Computer Cases">Computer Cases</option>
+
+                        <option value="other-accessories">Other Accessories</option>
+                    </select>
+                </div>
+
+                <div className="w-[25%] h-[120px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Brand</label>
+                    <select
+                        value={brand}
+                        onChange={(e)=>{setBrand(e.target.value)}}
+                        className="h-[52px] px-4 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] shadow-sm outline-none focus:ring-2 focus:ring-cyan-500/30"
+                    >
+                       <option value="" disabled>Select Brand</option>
+                        <option value="Generic">Generic</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Dell">Dell</option>
+                        <option value="HP">HP</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Asus">Asus</option>
+                        <option value="Acer">Acer</option>
+                        <option value="MSI">MSI</option>
+                        <option value="Logitech">Logitech</option>
+                        <option value="Corsair">Corsair</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="Intel">Intel</option>
+                        <option value="AMD">AMD</option>
+                        <option value="NVIDIA">NVIDIA</option>
+                        <option value="Gigabyte">Gigabyte</option>
+                        <option value="Kingston">Kingston</option>
+                        <option value="Crucial">Crucial</option>
+                        <option value="Cooler Master">Cooler Master</option>
+                    </select>
+                </div>
+
+                <div className="w-[25%] h-[120px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Model</label>
+                    <input
+                        value={model}
+                        onChange={(e)=>{setModel(e.target.value)}}
+                        placeholder="Ex: Inspiron 15"
+                        className="h-[52px] px-4 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] placeholder:text-slate-500 shadow-sm outline-none focus:ring-2 focus:ring-cyan-500/30"
+                    />
+                </div>
+
+                <div className="w-[25%] h-[120px] flex flex-col">
+                    <label className="font-semibold text-[#c7dde7] ml-2 mb-1">Is Visible</label>
+                    <select
+                        value={isVisible}
+                        onChange={(e) => setIsVisible(e.target.value === "true")}
+                        className="h-[52px] px-4 mx-2 rounded-[14px] border border-cyan-400/20 bg-[#dbe4e9] text-[#05394a] shadow-sm outline-none focus:ring-2 focus:ring-cyan-500/30"
+                    >
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div className="w-[50px] relative bottom-5 left-1/2 -translate-x-1/2 flex justify-center items-center">
+                <div className="w-[420px] h-[60px] border border-cyan-500/20 bg-[#03192d] shadow-[0_0_30px_rgba(0,0,0,0.28)] rounded-full flex justify-end items-center px-4 gap-4 backdrop-blur-md">
+                    <button
+                        onClick={() => window.history.back()}
+                        className="bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold rounded-full h-[42px] w-[130px] hover:opacity-90 transition"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        onClick={handleAddProduct}
+                        className="bg-gradient-to-r from-cyan-500 to-sky-500 text-white font-bold rounded-full h-[42px] w-[150px] hover:opacity-90 transition"
+                    >
+                        Add Product
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }

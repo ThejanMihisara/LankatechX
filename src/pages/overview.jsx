@@ -73,7 +73,9 @@ useEffect(() => {
                         <div className="w-full h-[100px] flex justify-start items-center text-white font-bold text-xl">
                         <button className="px-4 py-2 bg-green-500 rounded hover:bg-green-600 transition mr-4 cursor-pointer" onClick={
                             ()=>{
+                                
                                 addToCart(product,1)
+                                window.dispatchEvent(new Event("cartUpdated"));
                                 toast.success(product.name + " Product added to cart");
                             }
                             }>Add to Cart</button>
