@@ -6,7 +6,7 @@ import LoadingAnimation from "../../components/LoadingAnimation";
 
 
 
-export default function AdminUsersPage() {
+export default function adminUsersPage() {
 	const [users, setUsers] = useState([]);
 	const [pageNumber, setPageNumber] = useState(1);
 	const [pageSize, setPageSize] = useState(10);
