@@ -4,7 +4,8 @@ import toast from "react-hot-toast";
 import CustomerViewOrderInfoModal from "../components/customersViewOrderInfoModal";
 import getFormattedDate from "../utils/date-format";
 import getFormattedPrice from "../utils/price-format";
-import LoadingAnimation from "../components/loadingAnimation";
+import LoadingAnimation from "../components/LoadingAnimation";
+
 
 export default function MyOrdersPage() {
 	const [orders, setOrders] = useState([]);
