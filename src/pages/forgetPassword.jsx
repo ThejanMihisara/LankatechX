@@ -131,7 +131,7 @@ export default function ForgetPassword() {
 					</div>
 
 					<h1 className="text-5xl font-extrabold text-center bg-gradient-to-r from-cyan-400 via-blue-400 to-orange-400 bg-clip-text text-transparent">
-						Isuri Computers
+						LankatechX
 					</h1>
 
 					<p className="text-center text-slate-300/80 mt-5 text-lg leading-8">
@@ -164,7 +164,7 @@ export default function ForgetPassword() {
 						<div className="lg:hidden flex flex-col items-center mb-8">
 							<img src="/logo.png" className="w-[120px] mb-4" />
 							<h1 className="text-3xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-400 to-orange-400 bg-clip-text text-transparent text-center">
-								Isuri Computers
+								LankatechX
 							</h1>
 						</div>
 
@@ -207,7 +207,7 @@ export default function ForgetPassword() {
 						<div className="lg:hidden flex flex-col items-center mb-8">
 							<img src="/logo.png" className="w-[120px] mb-4" />
 							<h1 className="text-3xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-400 to-orange-400 bg-clip-text text-transparent text-center">
-								Isuri Computers
+								LankatechX
 							</h1>
 						</div>
 
