@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import toast from "react-hot-toast";
-import LoadingAnimation from "../../components/loadingAnimation";
+import LoadingAnimation from "../../components/LoadingAnimation";
+
 
 
 export default function AdminUsersPage() {
