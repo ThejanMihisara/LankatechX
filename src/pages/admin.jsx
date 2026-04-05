@@ -9,7 +9,7 @@ import AdminProductsPage from "./admin/adminProductsPage";
 import AdminAddProductPage from "./admin/adminAddProductPage";
 import AdminUpdateProductPage from "./admin/adminUpdateProductPage";
 import AdminOrdersPage from "./admin/adminOrdersPage";
-import AdminUsersPage from "./admin/adminUserspage";
+import AdminUsersPage from "./admin/adminUsersPage";
 import { AdminContactMessagesPage } from "./admin/AdminContactMessagesPage";
 
 export default function AdminPage() {
