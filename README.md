@@ -1,16 +1,65 @@
-# React + Vite
+🚀 LankatechX — Full Stack MERN E-Commerce Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+LankatechX is a full-stack MERN e-commerce web application for browsing, ordering, and managing computer hardware products.
+It includes authentication, admin dashboard, OTP password reset, order tracking, and modern responsive UI.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🧰 Tech Stack
+Frontend
+React (Vite)
+Tailwind CSS
+React Router
+Axios
+Context API
+Backend
+Node.js
+Express.js
+MongoDB (Mongoose)
+JWT Authentication
+SendGrid Email Service
+Google OAuth Login
+Deployment
+Frontend → Vercel
+Backend → Railway
+Database → MongoDB Atlas
+Email → SendGrid
+✨ Features
+👤 User Features
+User Registration & Login
+JWT Authentication
+Google Login
+Forgot Password with OTP
+Reset Password
+Profile Update
+Add to Cart
+Place Orders
+View My Orders
+Responsive UI
+🛠️ Admin Features
+Admin Dashboard
+View All Users
+Block / Unblock Users
+Change User Role
+View Orders
+Manage Products
+Pagination
+📧 Email Features
+OTP Password Reset
+SendGrid Integration
+Spam-safe transactional email
+OTP expiration support
+📁 Project Structure
+LankatechX
+│
+├── i-computers-frontend
+│   ├── src
+│   ├── components
+│   ├── pages
+│   ├── context
+│   └── main.jsx
+│
+└── i-computers-backend
+    ├── controllers
+    ├── models
+    ├── routes
+    ├── middleware
+    └── index.js
