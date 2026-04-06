@@ -45,7 +45,7 @@ export default function ForgetPassword() {
 				email: email,
 			});
 			setSecondsLeft(600);
-			toast.success("OTP sent to your email. Please check your inbox.");
+			toast.success("OTP sent to your email. Please check your spam folder.");
 		} catch (err) {
 			toast.error(
 				err?.response?.data?.message ||
