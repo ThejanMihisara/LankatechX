@@ -92,9 +92,7 @@ export default function Overview() {
                                     </div>
                                 )}
 
-                                <p className="text-xs sm:text-sm text-slate-400 mb-5 sm:mb-6 break-all">
-                                    Product ID: <span className="text-slate-200">{product.productId}</span>
-                                </p>
+                
 
                                 <div className="flex flex-wrap items-end gap-3 sm:gap-4 mb-5 sm:mb-6">
                                     <p className="text-2xl sm:text-3xl font-extrabold text-cyan-300">
