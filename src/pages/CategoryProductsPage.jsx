@@ -147,23 +147,29 @@ export default function CategoryProductsPage() {
 	}, [location.pathname, slug]);
 
 	useEffect(() => {
-		let result = [...products];
+  let result = [...products];
 
-		if (pageConfig.categoryValue !== "") {
-			result = result.filter(
-				(item) => normalize(item.category) === normalize(pageConfig.categoryValue)
-			);
-		}
+  if (pageConfig.categoryValue !== "") {
+    result = result.filter(
+      (item) => normalize(item.category) === normalize(pageConfig.categoryValue)
+    );
+  }
 
-		if (searchQuery.trim() !== "") {
-			const query = normalize(searchQuery);
-			result = result.filter((item) =>
-				normalize(item.category).includes(query)
-			);
-		}
+  if (searchQuery.trim() !== "") {
+    const query = normalize(searchQuery);
 
-		setFilteredProducts(result);
-	}, [products, pageConfig, searchQuery]);
+    result = result.filter((item) =>
+      normalize(item.productName).includes(query) ||
+      normalize(item.name).includes(query) ||
+      normalize(item.title).includes(query) ||
+      normalize(item.brand).includes(query) ||
+      normalize(item.category).includes(query) ||
+      normalize(item.description).includes(query)
+    );
+  }
+
+  setFilteredProducts(result);
+}, [products, pageConfig, searchQuery]);
 
 	return (
 		<div className="min-h-screen bg-gray-100 py-10 px-4">
